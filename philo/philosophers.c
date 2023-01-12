@@ -6,7 +6,7 @@
 /*   By: aminebeihaqi <aminebeihaqi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 02:05:36 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/12 09:44:36 by aminebeihaq      ###   ########.fr       */
+/*   Updated: 2023/01/12 10:18:15 by aminebeihaq      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	parse_arg(int argc, char **argv, t_arguments *arg)
 		arg->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	arg->number_of_philosophers_done_eating = 0;
 	arg->is_philosopher_dead = 0;
+	gettimeofday(&arg->program_start_time, NULL);
 	pthread_mutex_init(&arg->write_lock, NULL);
 	pthread_mutex_init(&arg->death_check_lock, NULL);
 }
@@ -57,7 +58,7 @@ void	wait_milliseconds(long long milliseconds, int is_dead)
 	if (is_dead)
 		return ;
 	start = get_time();
-	usleep(milliseconds - milliseconds / 100);
+	usleep((milliseconds - milliseconds / 2) * 1000);
 	while (get_time() < start + milliseconds)
 		;
 }
@@ -67,7 +68,7 @@ void	log_life(t_philosopher ph, char *message)
 	pthread_mutex_lock(&ph.arg->write_lock);
 	if (!ph.arg->is_philosopher_dead)
 	{
-		ft_putnbr_fd(get_time(), 1);
+		ft_putnbr_fd(get_time() - convert_time(ph.arg->program_start_time), 1);
 		ft_putchar_fd(' ', 1);
 		ft_putnbr_fd(ph.number_of_philosopher, 1);
 		ft_putchar_fd(' ', 1);
@@ -91,6 +92,7 @@ void	*philosopher(void *ph)
 		gettimeofday(&philo->last_meal, NULL);
 		pthread_mutex_unlock(&philo->arg->death_check_lock);
 		wait_milliseconds(philo->time_to_eat, philo->arg->is_philosopher_dead);
+		gettimeofday(&philo->last_meal, NULL);
 		philo->number_of_times_must_eat -= philo->number_of_times_must_eat > 0;
 		pthread_mutex_unlock(&philo->right->fork);
 		pthread_mutex_unlock(&philo->fork);
@@ -122,7 +124,7 @@ int		check_death(t_arguments *arg)
 				arg->is_philosopher_dead = 1;
 			}
 			pthread_mutex_unlock(&arg->death_check_lock);
-			usleep(50);
+			usleep(50000 / arg->number_of_philosophers);
 		}
 		if (arg->is_philosopher_dead)
 			break ;
