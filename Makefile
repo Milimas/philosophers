@@ -1,5 +1,5 @@
 CC = 			cc
-CFLAGS = 		-Wall -Wextra -Werror
+CFLAGS = 		-Wall -Wextra  -pthread
 SANITIZE = 		-fsanitize=address -g
 RM = 			rm -rf
 
@@ -7,12 +7,15 @@ NAME = 			philosophers
 BNAME = 		philosophers_bonus
 
 SRC_FILES = 	philosophers.c	\
-				ft_atoi.c
+				ft_atoi.c		\
+				ft_putchar.c	\
+				ft_putnbr.c	\
+				ft_putstr.c		
 
 BSRC_FILES =	philosophers_bonus.c
 
-SRC_DIR = 		mandatory/
-BSRC_DIR = 		bonus/
+SRC_DIR = 		philo/
+BSRC_DIR = 		philo_bonus/
 
 SRC = 			$(addprefix $(SRC_DIR), $(SRC_FILES))
 BSRC = 			$(addprefix $(BSRC_DIR), $(BSRC_FILES))
@@ -24,7 +27,7 @@ OBJ_DIR = 		$(SRC_DIR)obj/
 BOBJ_DIR = 		$(BSRC_DIR)obj/
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(SANITIZE)
 
 $(BNAME): $(BOBJ)
 	$(CC) $(CFLAGS) $(BOBJ) -o $(BNAME)
