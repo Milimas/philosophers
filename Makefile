@@ -9,8 +9,12 @@ BNAME = 		philosophers_bonus
 SRC_FILES = 	philosophers.c	\
 				ft_atoi.c		\
 				ft_putchar.c	\
-				ft_putnbr.c	\
-				ft_putstr.c		
+				ft_putnbr.c		\
+				ft_putstr.c		\
+				help.c			\
+				time.c			\
+				birth.c			\
+				check.c
 
 BSRC_FILES =	philosophers_bonus.c
 

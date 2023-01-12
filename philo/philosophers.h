@@ -6,7 +6,7 @@
 /*   By: aminebeihaqi <aminebeihaqi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:52:35 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/12 09:42:10 by aminebeihaq      ###   ########.fr       */
+/*   Updated: 2023/01/12 15:08:10 by aminebeihaq      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,18 @@ typedef struct s_arguments
 	int					number_of_philosophers_done_eating;
 }	t_arguments;
 
-int		ft_atoi(const char *str);
-void	ft_putnbr_fd(unsigned long long n, int fd);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+int			ft_atoi(const char *str);
+void		ft_putnbr_fd(unsigned long long n, int fd);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		help(void);
+long long	get_time(void);
+void		wait_milliseconds(long long milliseconds, int is_dead);
+long long	convert_time(struct timeval time);
+void		philosophers_birth(t_arguments *arg);
+int			check_death(t_arguments *arg);
+void		philosophers_birth(t_arguments *arg);
+void		*philosopher(void *ph);
+void		log_life(t_philosopher ph, char *message);
 
 #endif
