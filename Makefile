@@ -3,8 +3,8 @@ CFLAGS = 		-Wall -Wextra  -pthread
 SANITIZE = 		-fsanitize=address -g
 RM = 			rm -rf
 
-NAME = 			philosophers
-BNAME = 		philosophers_bonus
+NAME = 			philo
+BNAME = 		philo_bonus
 
 SRC_FILES = 	philosophers.c	\
 				ft_atoi.c		\
@@ -31,7 +31,7 @@ OBJ_DIR = 		$(SRC_DIR)obj/
 BOBJ_DIR = 		$(BSRC_DIR)obj/
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(SANITIZE)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 $(BNAME): $(BOBJ)
 	$(CC) $(CFLAGS) $(BOBJ) -o $(BNAME)
