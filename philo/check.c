@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aminebeihaqi <aminebeihaqi@student.42.f    +#+  +:+       +#+        */
+/*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:55:59 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/12 14:56:17 by aminebeihaq      ###   ########.fr       */
+/*   Updated: 2023/01/26 23:31:02 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	check_death(t_arguments *arg)
+void	check_death(t_arguments *arg)
 {
 	int	i;
 
