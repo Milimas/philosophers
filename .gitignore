@@ -52,4 +52,5 @@ Mkfile.old
 dkms.conf
 
 # exe
-philosophers
+philo/philo
+philo_bonus/philo_bonus
