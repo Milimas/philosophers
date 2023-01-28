@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aminebeihaqi <aminebeihaqi@student.42.f    +#+  +:+       +#+        */
+/*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:52:35 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/12 15:08:10 by aminebeihaq      ###   ########.fr       */
+/*   Updated: 2023/01/26 23:31:13 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ long long	get_time(void);
 void		wait_milliseconds(long long milliseconds, int is_dead);
 long long	convert_time(struct timeval time);
 void		philosophers_birth(t_arguments *arg);
-int			check_death(t_arguments *arg);
+void		check_death(t_arguments *arg);
 void		philosophers_birth(t_arguments *arg);
 void		*philosopher(void *ph);
 void		log_life(t_philosopher ph, char *message);
