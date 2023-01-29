@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 03:52:35 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/26 23:31:13 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/01/29 00:47:12 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ void		check_death(t_arguments *arg);
 void		philosophers_birth(t_arguments *arg);
 void		*philosopher(void *ph);
 void		log_life(t_philosopher ph, char *message);
+void		take_forks(t_philosopher *philo);
+void		give_forks(t_philosopher *philo);
 
 #endif

@@ -1,6 +1,7 @@
 CC = 			cc
-CFLAGS = 		-Wall -Wextra  -pthread
-SANITIZE = 		-fsanitize=address -g
+CFLAGS = 		-Wall -Wextra -Werror
+ADDRESS = 		-fsanitize=address -g
+PTHREAD = 		-fsanitize=thread -g3
 RM = 			rm -rf
 
 NAME = 			philo
@@ -13,7 +14,8 @@ SRC_FILES = 	philosophers.c	\
 				help.c			\
 				time.c			\
 				birth.c			\
-				check.c
+				check.c			\
+				fork.c
 
 SRC_DIR = 		philo/
 
@@ -24,7 +26,7 @@ OBJ = 			$(SRC:%.c=$(OBJ_DIR)%.o)
 OBJ_DIR = 		obj/
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(PTHREAD)
 
 $(OBJ_DIR)%.o:%.c
 	mkdir -p $(OBJ_DIR)

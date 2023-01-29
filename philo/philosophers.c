@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 02:05:36 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/28 01:47:46 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/01/29 00:46:01 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ void	*philosopher(void *ph)
 	philo = ph;
 	while (!philo->arg->is_philosopher_dead && philo->number_of_times_must_eat)
 	{
-		pthread_mutex_lock(&philo->fork);
-		log_life(*philo, "has taken left a fork");
-		pthread_mutex_lock(&philo->right->fork);
-		log_life(*philo, "has taken right a fork");
+		take_forks(philo);
 		pthread_mutex_lock(&philo->arg->death_check_lock);
 		log_life(*philo, "is eating");
 		gettimeofday(&philo->last_meal, NULL);
@@ -62,8 +59,7 @@ void	*philosopher(void *ph)
 		wait_milliseconds(philo->time_to_eat, philo->arg->is_philosopher_dead);
 		gettimeofday(&philo->last_meal, NULL);
 		philo->number_of_times_must_eat -= philo->number_of_times_must_eat > 0;
-		pthread_mutex_unlock(&philo->right->fork);
-		pthread_mutex_unlock(&philo->fork);
+		give_forks(philo);
 		log_life(*philo, "is sleeping");
 		wait_milliseconds(philo->time_to_sleep,
 			philo->arg->is_philosopher_dead);
