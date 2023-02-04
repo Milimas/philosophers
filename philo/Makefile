@@ -1,5 +1,5 @@
 CC = 			cc
-CFLAGS = 		-Wall -Wextra -Werror
+CFLAGS = 		-Wall -Wextra -Werror -pthread
 ADDRESS = 		-fsanitize=address -g
 PTHREAD = 		-fsanitize=thread -g3
 RM = 			rm -rf
@@ -26,7 +26,7 @@ OBJ = 			$(SRC:%.c=$(OBJ_DIR)%.o)
 OBJ_DIR = 		obj/
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(PTHREAD)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)%.o:%.c
 	mkdir -p $(OBJ_DIR)
