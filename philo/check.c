@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:55:59 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/28 06:32:41 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:27:32 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_death(t_arguments *arg)
 				> arg->time_to_die
 				&& arg->philosophers[i].number_of_times_must_eat)
 			{
-				log_life(arg->philosophers[i], "is dead");
+				log_life(arg->philosophers[i], "died");
 				arg->is_philosopher_dead = 1;
 			}
 			pthread_mutex_unlock(&arg->death_check_lock);
