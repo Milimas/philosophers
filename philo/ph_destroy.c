@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ph_destroy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aminebeihaqi <aminebeihaqi@student.42.f    +#+  +:+       +#+        */
+/*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 23:00:20 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/10 23:01:45 by aminebeihaq      ###   ########.fr       */
+/*   Created: 2023/02/26 04:55:36 by abeihaqi          #+#    #+#             */
+/*   Updated: 2023/02/26 05:03:33 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	destroy_rules(t_rules *rules)
 {
-	if (!s)
-		return ;
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	pthread_mutex_destroy(&rules->death_lock);
+	pthread_mutex_destroy(&rules->write_lock);
+	free(rules->forks);
+	return (0);
+}
+
+int	destroy_philos(t_philo *philo)
+{
+	free(philo);
+	return (0);
 }

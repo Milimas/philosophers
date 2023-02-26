@@ -6,16 +6,17 @@ RM = 			rm -rf
 
 NAME = 			philo
 
-SRC_FILES = 	philosophers.c	\
-				ft_atoi.c		\
-				ft_putchar.c	\
-				ft_putnbr.c		\
-				ft_putstr.c		\
-				help.c			\
-				time.c			\
-				birth.c			\
-				check.c			\
-				fork.c
+SRC_FILES =	ph_action.c		\
+			ph_atoi.c		\
+			ph_check.c		\
+			ph_fork.c		\
+			ph_init.c		\
+			ph_main.c		\
+			ph_philo.c		\
+			ph_print.c		\
+			ph_time.c		\
+			ph_destroy.c
+
 
 SRC_DIR = 		philo/
 
