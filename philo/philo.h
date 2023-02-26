@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:09:18 by abeihaqi          #+#    #+#             */
-/*   Updated: 2023/02/26 05:05:35 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/26 05:26:43 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,8 @@ int		grim_reaper(t_philo *philo, t_rules *rules);
 // destroy
 int		destroy_rules(t_rules *rules);
 int		destroy_philos(t_philo *philo);
+
+// atoi
+int		ft_atoi(const char *str);
 
 #endif
