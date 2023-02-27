@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:55:16 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/02/27 01:27:40 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/27 01:49:50 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	init_rules(char **argv, t_rules *rules)
 {
 	rules->number_of_philos = ft_atoi(argv[1]);
 	rules->forks = malloc(sizeof(pthread_mutex_t) * rules->number_of_philos);
+	if (!rules->forks)
+		return (1);
 	rules->time_to_die = ft_atoi(argv[2]);
 	pthread_mutex_init(&rules->death_lock, NULL);
 	pthread_mutex_init(&rules->write_lock, NULL);
