@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 04:50:59 by abeihaqi          #+#    #+#             */
-/*   Updated: 2023/02/27 00:09:26 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/27 01:36:35 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*philosopher(void *ph)
 		exit(1);
 	philo->start_time = ft_gettime(0);
 	pthread_detach(philo->death_thid);
-	if (philo->index % 2)
+	if (!(philo->index % 2))
 		usleep(1000);
 	while (philo->must_eat)
 	{
