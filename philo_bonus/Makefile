@@ -6,7 +6,7 @@
 #    By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 01:15:32 by abeihaqi          #+#    #+#              #
-#    Updated: 2023/02/27 01:15:33 by abeihaqi         ###   ########.fr        #
+#    Updated: 2023/02/27 01:40:59 by abeihaqi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ OBJ = 			$(SRC:%.c=$(OBJ_DIR)%.o)
 
 OBJ_DIR = 		obj/
 
+all: $(NAME)
+
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) 
 
@@ -46,7 +48,7 @@ $(OBJ_DIR)%.o:%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME)
+bonus: $(NAME)
 
 clean:
 	$(RM) $(OBJ_DIR)
