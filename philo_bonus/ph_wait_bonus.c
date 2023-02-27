@@ -1,18 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ph_wait.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 22:59:19 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/31 02:08:18 by abeihaqi         ###   ########.fr       */
+/*   Created: 2023/02/26 05:38:53 by abeihaqi          #+#    #+#             */
+/*   Updated: 2023/02/26 05:41:06 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philo_bonus.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	wait_philos(t_philo *philo, t_rules *rules)
 {
-	write(fd, &c, sizeof(c));
+	int	i;
+	int	status;
+
+	i = 0;
+	while (i < rules->number_of_philos)
+	{
+		waitpid(-1, &status, 0);
+		if (status != 0)
+		{
+			i = 0;
+			while (i < rules->number_of_philos)
+			{
+				kill(philo[i].pid, 9);
+				i++;
+			}
+			exit(1);
+		}
+		i++;
+	}
 }

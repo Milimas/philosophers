@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ph_main_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 23:00:20 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/01/31 02:08:36 by abeihaqi         ###   ########.fr       */
+/*   Created: 2023/01/12 02:05:36 by aminebeihaq       #+#    #+#             */
+/*   Updated: 2023/02/27 00:05:34 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philo_bonus.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	main(int argc, char **argv)
 {
-	if (!s)
-		return ;
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	t_philo	*philo;
+	t_rules	rules;
+
+	if (argc < 5)
+	{
+		help();
+		exit(2);
+	}
+	init_rules(argv, &rules);
+	init_philos(argc, argv, &philo, &rules);
+	start_philos(philo);
+	wait_philos(philo, &rules);
+	return (0);
 }

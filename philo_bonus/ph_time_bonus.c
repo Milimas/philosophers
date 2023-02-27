@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_bonus.c                                       :+:      :+:    :+:   */
+/*   ph_time_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:52:11 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/02/06 19:34:09 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/26 05:17:43 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "philo_bonus.h"
 
-long long	get_time()
+long	ft_gettime(long time)
 {
-	struct timeval	time;
+	struct timeval	now;
 
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000L + time.tv_usec / 1000L);
+	gettimeofday(&now, NULL);
+	return ((now.tv_sec * 1000 + now.tv_usec / 1000) - time);
 }
 
-long long	convert_time(struct timeval time)
+long	ft_sleep(long time, long from)
 {
-	return (time.tv_sec * 1000L + time.tv_usec / 1000L);
-}
-
-void	wait_milliseconds(long long milliseconds, int is_dead, t_arguments *arg)
-{
-	long long	start;
-
-	if (is_dead)
-		return ;
-	start = get_time(arg);
-	usleep((milliseconds * 1000L) - ((milliseconds * 1000L) >> 5));
-	while (get_time(arg) < start + milliseconds)
-		usleep(1000);
+	if (time > 60)
+		usleep((time * .9) * 1000);
+	while (ft_gettime(from) < time)
+		usleep(50);
+	return (ft_gettime(from) - time);
 }
