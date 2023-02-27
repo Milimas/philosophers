@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 02:05:36 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/02/27 00:05:34 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/27 02:04:23 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	main(int argc, char **argv)
 	init_philos(argc, argv, &philo, &rules);
 	start_philos(philo);
 	wait_philos(philo, &rules);
+	destroy_philos(philo);
+	destroy_rules(&rules);
 	return (0);
 }
