@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:55:16 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/02/27 01:28:11 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/27 02:03:29 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	init_philos(int argc, char **argv, t_philo **philo, t_rules *rules)
 		(*philo)[i].time_to_eat = ft_atoi(argv[3]);
 		(*philo)[i].time_to_sleep = ft_atoi(argv[4]);
 		(*philo)[i].forks = rules->forks;
-		(*philo)[i].start_time = ft_gettime(0);
 	}
 	return (0);
 }
@@ -40,6 +39,8 @@ int	init_rules(char **argv, t_rules *rules)
 {
 	rules->number_of_philos = ft_atoi(argv[1]);
 	rules->time_to_die = ft_atoi(argv[2]);
+	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
+		exit(1);
 	sem_unlink("/ph_forks");
 	sem_unlink("/ph_write");
 	sem_unlink("/ph_death");

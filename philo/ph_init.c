@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:55:16 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/02/27 01:49:50 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/02/27 01:53:15 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	init_philos(int argc, char **argv, t_philo **philo, t_rules *rules)
 int	init_rules(char **argv, t_rules *rules)
 {
 	rules->number_of_philos = ft_atoi(argv[1]);
+	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
+		return (1);
 	rules->forks = malloc(sizeof(pthread_mutex_t) * rules->number_of_philos);
 	if (!rules->forks)
 		return (1);
