@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:09:18 by abeihaqi          #+#    #+#             */
-/*   Updated: 2023/02/26 05:26:43 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:37:51 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_rules
 {
+	struct timeval	start_time;
 	long			time_to_die;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	death_lock;
@@ -32,13 +33,12 @@ typedef struct s_philo
 {
 	pthread_t		thid;
 	int				index;
-	pthread_mutex_t	*forks;
-	long			start_time;
 	long			time_to_eat;
 	long			time_to_sleep;
-	long			last_meal;
-	long			next_meal;
+	struct timeval	last_meal;
 	int				must_eat;
+	pthread_mutex_t	*right;
+	pthread_mutex_t	*left;
 	t_rules			*rules;
 }	t_philo;
 
@@ -66,6 +66,7 @@ void	print_status(t_philo *philo, char *msg);
 // time
 long	ft_gettime(long time);
 long	ft_sleep(long time, long from);
+long	ft_convtime(struct timeval time);
 
 // check
 int		grim_reaper(t_philo *philo, t_rules *rules);

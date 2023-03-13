@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 04:45:47 by abeihaqi          #+#    #+#             */
-/*   Updated: 2023/02/26 23:14:48 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/03/10 02:28:26 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 void	ph_eat(t_philo *philo)
 {
 	take_forks(philo);
-	sem_wait(philo->rules->death_lock);
+	gettimeofday(&philo->last_meal, NULL);
 	print_status(philo, "is eating");
-	philo->last_meal = ft_gettime(0);
 	philo->must_eat -= (philo->must_eat > 0);
-	sem_post(philo->rules->death_lock);
-	ft_sleep(philo->time_to_eat, philo->last_meal);
+	ft_sleep(philo->time_to_eat, ft_gettime(0));
 	give_forks(philo);
 }
 

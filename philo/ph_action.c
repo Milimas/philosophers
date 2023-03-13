@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 04:45:47 by abeihaqi          #+#    #+#             */
-/*   Updated: 2023/02/26 05:03:07 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:41:27 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	ph_eat(t_philo *philo)
 {
 	take_forks(philo);
+	gettimeofday(&philo->last_meal, NULL);
 	pthread_mutex_lock(&philo->rules->death_lock);
-	print_status(philo, "is eating");
-	philo->last_meal = ft_gettime(0);
 	philo->must_eat -= (philo->must_eat > 0);
 	pthread_mutex_unlock(&philo->rules->death_lock);
-	ft_sleep(philo->time_to_eat, philo->last_meal);
+	print_status(philo, "is eating");
+	ft_sleep(philo->time_to_eat, ft_gettime(0));
 	give_forks(philo);
 }
 

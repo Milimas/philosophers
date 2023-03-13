@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:55:59 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/02/26 05:02:55 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:43:29 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	check_full(t_philo *philo, t_rules *rules)
 		pthread_mutex_unlock(&rules->death_lock);
 	}
 	if (number_of_full == rules->number_of_philos)
+	{
+		pthread_mutex_lock(&rules->write_lock);
 		return (1);
+	}
 	return (0);
 }
 
@@ -42,7 +45,7 @@ int	grim_reaper(t_philo *philo, t_rules *rules)
 		while (++i < rules->number_of_philos)
 		{
 			pthread_mutex_lock(&rules->death_lock);
-			if (ft_gettime(philo[i].last_meal) >= rules->time_to_die)
+			if (ft_gettime(ft_convtime(philo->last_meal)) >= rules->time_to_die)
 			{
 				print_status(&philo[i], "died");
 				destroy_rules(rules);

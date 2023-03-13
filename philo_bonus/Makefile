@@ -6,12 +6,12 @@
 #    By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 01:15:32 by abeihaqi          #+#    #+#              #
-#    Updated: 2023/02/27 01:40:59 by abeihaqi         ###   ########.fr        #
+#    Updated: 2023/03/13 20:43:24 by abeihaqi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = 			cc
-CFLAGS = 		-Wall -Wextra -Werror -pthread
+CFLAGS = 		-Wall -Wextra -Werror -pthread -O3
 ADDRESS = 		-fsanitize=address -g
 PTHREAD = 		-fsanitize=thread -g3
 RM = 			rm -rf
@@ -42,7 +42,10 @@ OBJ_DIR = 		obj/
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) 
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+debug: 
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(PTHREAD)
 
 $(OBJ_DIR)%.o:%.c
 	mkdir -p $(OBJ_DIR)
@@ -58,4 +61,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug

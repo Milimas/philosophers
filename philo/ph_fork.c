@@ -6,7 +6,7 @@
 /*   By: abeihaqi <abeihaqi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 00:44:00 by abeihaqi          #+#    #+#             */
-/*   Updated: 2023/02/26 05:04:07 by abeihaqi         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:30:26 by abeihaqi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->forks[philo->index - 1]);
+	pthread_mutex_lock(philo->right);
 	print_status(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->forks[philo->index
-		% philo->rules->number_of_philos]);
+	pthread_mutex_lock(philo->left);
 	print_status(philo, "has taken a fork");
 }
 
 void	give_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->forks[philo->index
-		% philo->rules->number_of_philos]);
-	pthread_mutex_unlock(&philo->forks[philo->index - 1]);
+	pthread_mutex_unlock(philo->right);
+	pthread_mutex_unlock(philo->left);
 }
